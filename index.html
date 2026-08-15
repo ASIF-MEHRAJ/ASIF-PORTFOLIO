@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="is-loading">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,12 +7,69 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Anton&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="is-loading">
+    <div class="preloader" id="preloader">
+      <div class="preloader-half preloader-half-top"></div>
+      <div class="preloader-half preloader-half-bottom"></div>
+      <div class="preloader-flash" id="preloaderFlash"></div>
+
+      <div class="preloader-topbar">
+        <div class="pl-topbar-item"><span class="pl-dot"></span>PORTFOLIO</div>
+        <div class="pl-topbar-line"><span class="pl-topbar-tick"></span></div>
+        <div class="pl-topbar-item">CREATIVE DEVELOPER</div>
+      </div>
+
+      <div class="preloader-content">
+        <div class="preloader-loading-tag">
+          <span class="pl-dot"></span>LOADING EXPERIENCE<span class="pl-dot"></span>
+        </div>
+
+        <div class="preloader-frame">
+          <span class="pl-corner pl-corner-tl"></span>
+          <span class="pl-corner pl-corner-tr"></span>
+          <span class="pl-corner pl-corner-bl"></span>
+          <span class="pl-corner pl-corner-br"></span>
+
+          <span class="pl-mark pl-mark-dot pl-mark-tl"></span>
+          <span class="pl-mark pl-mark-square pl-mark-tr"></span>
+          <span class="pl-mark pl-mark-dot pl-mark-bl"></span>
+          <span class="pl-mark pl-mark-square pl-mark-br"></span>
+
+          <div class="preloader-name">
+            <div class="pl-line-mask">
+              <span class="pl-line-inner pl-name-white">ASIF</span>
+            </div>
+            <div class="pl-line-mask">
+              <span class="pl-line-inner pl-name-red">MEHRAJ</span>
+            </div>
+          </div>
+
+          <div class="preloader-tagline">Frontend Developer</div>
+        </div>
+
+        <div class="preloader-status-row">
+          BUILDING SOMETHING <em>EXTRAORDINARY</em>
+        </div>
+
+        <div class="preloader-progress-row">
+          <div class="preloader-progress">
+            <div class="preloader-progress-fill" id="preloaderProgressFill"></div>
+          </div>
+          <div class="preloader-counter"><span id="preloaderCounter">0</span><span class="pl-percent-sign">%</span></div>
+        </div>
+
+        <div class="preloader-status-sub" id="preloaderStatusSub">Initializing systems</div>
+      </div>
+
+      <div class="preloader-corner preloader-corner-bl">&mdash;&nbsp;EST. 2024</div>
+      <div class="preloader-corner preloader-corner-br">PLEASE WAIT...&nbsp;&mdash;</div>
+    </div>
+
     <div class="noise-overlay"></div>
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursor-follower"></div>
@@ -100,7 +157,9 @@
               ><span class="hero-word roll-text">FRONTEND</span></span
             >
             <span class="hero-line hero-outline"
-              ><span class="hero-word roll-text"><span class="text-highlight">ENGINEER</span></span></span
+              ><span class="hero-word roll-text"
+                ><span class="text-highlight">ENGINEER</span></span
+              ></span
             >
           </h1>
           <p class="hero-subtitle">
@@ -180,27 +239,31 @@
           </div>
           <div class="about-content">
             <p class="about-intro">
-              Hi, I'm <span class="text-highlight">Asif Mehraj</span> — a web developer and creative
-              designer crafting digital experiences that feel as good as they
-              look.
+              Hi, I'm <span class="text-highlight">Asif Mehraj</span> — a web
+              developer and creative designer crafting digital experiences that
+              feel as good as they look.
             </p>
             <p class="about-detail">
               I build fast, responsive, and visually striking websites using
               HTML, CSS, JavaScript, React and GSAP. My focus is on blending
               clean code with thoughtful design so every project ships with both
               performance and personality. <br />
-              Based in <span class="text-highlight">Kashmir</span>, I work with brands and individuals to
-              turn ideas into interactive, memorable interfaces — from concept
-              and layout to motion and final build.
+              Based in <span class="text-highlight">Kashmir</span>, I work with
+              brands and individuals to turn ideas into interactive, memorable
+              interfaces — from concept and layout to motion and final build.
             </p>
             <div class="about-stats">
               <div class="stat-item">
-                <span class="stat-number text-highlight" data-target="10">0</span>
+                <span class="stat-number text-highlight" data-target="10"
+                  >0</span
+                >
                 <span class="stat-suffix">+</span>
                 <span class="stat-label">Projects Made</span>
               </div>
               <div class="stat-item">
-                <span class="stat-number text-highlight" data-target="5">0</span>
+                <span class="stat-number text-highlight" data-target="5"
+                  >0</span
+                >
                 <span class="stat-suffix">+</span>
                 <span class="stat-label">Months Experience</span>
               </div>
@@ -243,7 +306,9 @@
             <img src="./assets/fintek.png" alt="Project Screenshot" />
             <div class="project-details">
               <div class="project-meta">
-                <span class="project-category text-highlight">EXPENCE TRACKER</span>
+                <span class="project-category text-highlight"
+                  >EXPENCE TRACKER</span
+                >
                 <span class="project-year text-highlight">2026</span>
               </div>
               <h3 class="project-title roll-text text">FINTEK-PRO</h3>
@@ -262,7 +327,9 @@
             <img src="./assets/SSGN.png" alt="Project Screenshot" />
             <div class="project-details">
               <div class="project-meta">
-                <span class="project-category text-highlight">E - COMMERCE</span>
+                <span class="project-category text-highlight"
+                  >E - COMMERCE</span
+                >
                 <span class="project-year text-highlight">2026</span>
               </div>
               <h3 class="project-title roll-text">SSGN SHOP</h3>
@@ -285,7 +352,9 @@
     <section class="carousel-section" id="carousel">
       <div class="carousel-header">
         <span class="section-number text-highlight">03</span>
-        <h2 class="section-title roll-text text-highlight">Featured Projects</h2>
+        <h2 class="section-title roll-text text-highlight">
+          Featured Projects
+        </h2>
       </div>
       <div class="carousel-stage" id="carouselStage">
         <div
@@ -320,22 +389,26 @@
         <div
           class="carousel-card"
           data-index="1"
-          data-url="https://aura-shop-two.vercel.app/"
+          data-url=" https://asif-mehraj.github.io/Dribble/"
         >
           <div class="carousel-card-inner">
             <img
               class="carousel-card-image"
-              src="./assets/project-aura.jpg"
-              alt="AURA project screenshot"
+              src="./assets/project-dribble.png"
+              alt="Dribble project screenshot"
             />
             <div class="carousel-card-content">
               <span class="carousel-card-category">E-Commerce</span>
-              <h3 class="carousel-card-title">AURA</h3>
+              <h3 class="carousel-card-title">Dribble</h3>
               <p class="carousel-card-desc">
                 A shopping cart web app focused on smooth product browsing, cart
                 management and checkout interactions.
               </p>
-              <span class="carousel-card-link">VIEW LIVE ↗</span>
+              <span class="carousel-card-link"><a href=" https://asif-mehraj.github.io/Dribble/" 
+                target="_blank" 
+                rel="noopener noreferrer">
+                VIEW LIVE ↗
+              </a></span>
             </div>
           </div>
         </div>
@@ -358,7 +431,7 @@
                 timer, goal tracker and live weather.
               </p>
               <span class="carousel-card-link"
-                ><a href="https://productive-dashboard-seven.vercel.app"
+                ><a href="https://productive-dashboard-seven.vercel.app/" target="_blank" rel="noopener noreferrer"
                   >VIEW LIVE ↗</a
                 ></span
               >
@@ -383,14 +456,16 @@
                 A performance sneakers and streetwear store built around bold
                 visuals for people who never slow down.
               </p>
-              <span class="carousel-card-link">VIEW LIVE ↗</span>
+              <span class="carousel-card-link"><a href="https://ssgn-shop.vercel.app  " target="_blank" rel="noopener noreferrer">
+                VIEW LIVE ↗
+              </a></span>
             </div>
           </div>
         </div>
         <div
           class="carousel-card"
           data-index="4"
-          data-url="https://asif-mehraj.github.io/TEA-LEVELS-AND-A-BUD"
+          data-url="https://tea-levels-and-a-bud.vercel.app/"
         >
           <div class="carousel-card-inner">
             <img
@@ -407,7 +482,7 @@
               </p>
               <span class="carousel-card-link"
                 ><a
-                  href="https://asif-mehraj.github.io/TEA-LEVELS-AND-A-BUD"
+                  href="https://tea-levels-and-a-bud.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   >VIEW LIVE ↗</a
@@ -450,10 +525,18 @@
     <section class="tech-stack" id="experience">
       <div class="tech-marquee-wrap" aria-hidden="true">
         <div class="tech-marquee" id="techMarquee">
-          <span class="tech-animation">HTML5&nbsp;&nbsp;•&nbsp;&nbsp;CSS3&nbsp;&nbsp;•&nbsp;&nbsp;JAVASCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;TYPESCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;REACT&nbsp;&nbsp;•&nbsp;&nbsp;REDUX&nbsp;&nbsp;•&nbsp;&nbsp;GSAP&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-          <span class="tech-animation">HTML5&nbsp;&nbsp;•&nbsp;&nbsp;CSS3&nbsp;&nbsp;•&nbsp;&nbsp;JAVASCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;TYPESCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;REACT&nbsp;&nbsp;•&nbsp;&nbsp;REDUX&nbsp;&nbsp;•&nbsp;&nbsp;GSAP&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-          <span class="tech-animation">HTML5&nbsp;&nbsp;•&nbsp;&nbsp;CSS3&nbsp;&nbsp;•&nbsp;&nbsp;JAVASCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;TYPESCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;REACT&nbsp;&nbsp;•&nbsp;&nbsp;REDUX&nbsp;&nbsp;•&nbsp;&nbsp;GSAP&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-          <span class="tech-animation">HTML5&nbsp;&nbsp;•&nbsp;&nbsp;CSS3&nbsp;&nbsp;•&nbsp;&nbsp;JAVASCRIPT&nbsp;&nbsptypescript&nbsp;&nbsptreact&nbsp;&nbspredux&nbsp;&nbspgsap</span>
+          <span class="tech-animation"
+            >HTML5&nbsp;&nbsp;•&nbsp;&nbsp;CSS3&nbsp;&nbsp;•&nbsp;&nbsp;JAVASCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;TYPESCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;REACT&nbsp;&nbsp;•&nbsp;&nbsp;REDUX&nbsp;&nbsp;•&nbsp;&nbsp;GSAP&nbsp;&nbsp;•&nbsp;&nbsp;</span
+          >
+          <span class="tech-animation"
+            >HTML5&nbsp;&nbsp;•&nbsp;&nbsp;CSS3&nbsp;&nbsp;•&nbsp;&nbsp;JAVASCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;TYPESCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;REACT&nbsp;&nbsp;•&nbsp;&nbsp;REDUX&nbsp;&nbsp;•&nbsp;&nbsp;GSAP&nbsp;&nbsp;•&nbsp;&nbsp;</span
+          >
+          <span class="tech-animation"
+            >HTML5&nbsp;&nbsp;•&nbsp;&nbsp;CSS3&nbsp;&nbsp;•&nbsp;&nbsp;JAVASCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;TYPESCRIPT&nbsp;&nbsp;•&nbsp;&nbsp;REACT&nbsp;&nbsp;•&nbsp;&nbsp;REDUX&nbsp;&nbsp;•&nbsp;&nbsp;GSAP&nbsp;&nbsp;•&nbsp;&nbsp;</span
+          >
+          <span class="tech-animation"
+            >HTML5&nbsp;&nbsp;•&nbsp;&nbsp;CSS3&nbsp;&nbsp;•&nbsp;&nbsp;JAVASCRIPT&nbsp;&nbsptypescript&nbsp;&nbsptreact&nbsp;&nbspredux&nbsp;&nbspgsap</span
+          >
         </div>
       </div>
       <div class="container">
@@ -467,100 +550,191 @@
         </p>
 
         <div class="tech-grid">
-          <div class="tech-card" style="--tech-color:#E44D26;--tech-glow:228,77,38">
+          <div
+            class="tech-card"
+            style="--tech-color: #e44d26; --tech-glow: 228, 77, 38"
+          >
             <div class="tech-card-glow"></div>
             <div class="tech-card-top">
               <div class="tech-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 17L12 22l-6.5-2L4 3z"></path><path d="M7 7h10l-.4 4.5H9l.2 2.5 2.8.8 2.8-.8.3-3"></path></svg>
+                <svg
+                  width="64"
+                  height="64"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path fill="#E44D26" d="M2 2l2 17.9L12 22l8-2.1L22 2H2z" />
+                  <path
+                    fill="#F16529"
+                    d="M12 20.5V3.5h8.2L18.6 18.1 12 20.5z"
+                  />
+                  <path
+                    fill="#fff"
+                    d="M6.5 6h11l-.3 2.2H8.9l.2 2.2h7.9l-.6 6.2-4.4 1.2-4.4-1.2-.3-3h2.2l.2 1.2 2.3.6 2.3-.6.2-2.1H7.1L6.5 6z"
+                  />
+                </svg>
               </div>
-              <span class="tech-index">01</span>
+              <span class="tech-index text-highlight">01</span>
             </div>
             <h3 class="tech-name">HTML5</h3>
             <p class="tech-desc">Semantic, accessible markup</p>
-            <div class="tech-bar"><div class="tech-bar-fill" data-level="96"></div></div>
+            <div class="tech-bar">
+              <div class="tech-bar-fill" data-level="96"></div>
+            </div>
           </div>
 
-          <div class="tech-card" style="--tech-color:#2965F1;--tech-glow:41,101,241">
+          <div
+            class="tech-card"
+            style="--tech-color: #2965f1; --tech-glow: 41, 101, 241"
+          >
             <div class="tech-card-glow"></div>
             <div class="tech-card-top">
               <div class="tech-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 17L12 22l-6.5-2L4 3z"></path><path d="M16.5 7H8l.3 3.2h7.9L15.7 17 12 18.2 8.3 17l-.2-2.6"></path></svg>
+                <svg width="64" height="64" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#1572B6" d="M2 2l2 17.9L12 22l8-2.1L22 2H2z"/>
+  <path fill="#33A9DC" d="M12 20.5V3.5h8.2L18.6 18.1 12 20.5z"/>
+  <path fill="#fff" d="M6.5 6h11l-.3 2.2H8.9l.2 2.2h7.9l-.6 6.2-4.4 1.2-4.4-1.2-.3-3h2.2l.2 1.2 2.3.6 2.3-.6.2-2.1H7.1L6.5 6z"/>
+</svg>
+                </svg>
               </div>
-              <span class="tech-index">02</span>
+              <span class="tech-index text-highlight">02</span>
             </div>
             <h3 class="tech-name">CSS3</h3>
             <p class="tech-desc">Modern layouts &amp; motion design</p>
-            <div class="tech-bar"><div class="tech-bar-fill" data-level="94"></div></div>
+            <div class="tech-bar">
+              <div class="tech-bar-fill" data-level="94"></div>
+            </div>
           </div>
 
-          <div class="tech-card" style="--tech-color:#F0DB4F;--tech-glow:240,219,79">
+          <div
+            class="tech-card"
+            style="--tech-color: #f0db4f; --tech-glow: 240, 219, 79"
+          >
             <div class="tech-card-glow"></div>
             <div class="tech-card-top">
               <div class="tech-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10M7 12h10M7 17h6"></path></svg>
+                <svg width="64" height="64" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="24" height="24" fill="#F7DF1E"/>
+                      <path d="M5.7 18.1l1.8-1.1c.35.62.67 1.15 1.43 1.15.73 0 1.2-.28 1.2-1.36v-7.35h2.2v7.38c0 2.28-1.34 3.32-3.3 3.32-1.77 0-2.8-.92-3.33-2.03zM13.5 17.9l1.8-1.04c.47.77 1.08 1.34 2.15 1.34.9 0 1.47-.45 1.47-1.07 0-.74-.58-1-1.57-1.43l-.54-.23c-1.57-.67-2.61-1.5-2.61-3.26 0-1.62 1.23-2.85 3.15-2.85 1.37 0 2.35.48 3.06 1.73l-1.67 1.07c-.37-.67-.77-.93-1.39-.93-.63 0-1.03.4-1.03.93 0 .65.4.91 1.33 1.31l.54.23c1.84.79 2.88 1.58 2.88 3.38 0 1.94-1.52 3-3.56 3-1.99 0-3.27-.95-4.01-2.18z"/>
+                </svg>
               </div>
-              <span class="tech-index">03</span>
+              <span class="tech-index text-highlight">03</span>
             </div>
             <h3 class="tech-name">JavaScript</h3>
             <p class="tech-desc">Dynamic, performant interactions</p>
-            <div class="tech-bar"><div class="tech-bar-fill" data-level="95"></div></div>
+            <div class="tech-bar">
+              <div class="tech-bar-fill" data-level="95"></div>
+            </div>
           </div>
 
-          <div class="tech-card" style="--tech-color:#3178C6;--tech-glow:49,120,198">
+          <div
+            class="tech-card"
+            style="--tech-color: #3178c6; --tech-glow: 49, 120, 198"
+          >
             <div class="tech-card-glow"></div>
             <div class="tech-card-top">
               <div class="tech-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9h6M9 9v9"></path><path d="M14 15c0 1.4 1.2 2.2 2.6 2.2 1.3 0 2.4-.7 2.4-1.9 0-2.6-5-1.6-5-4.5 0-1.2 1.1-2 2.4-2 1.2 0 2.2.6 2.5 1.7"></path></svg>
+                <svg width="64" height="64" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="24" height="24" fill="#3178C6"/>
+                    <path fill="#fff" d="M4 6h8v2H9.5v10h-2V8H4V6zm8.5 0h7.5v2h-2.75v10h-2V8H12.5V6zm.2 7.2h1.9c.08.55.35.98.8 1.29.45.31 1.03.46 1.75.46.63 0 1.12-.13 1.47-.38.35-.25.53-.58.53-.99 0-.34-.13-.61-.39-.8-.26-.19-.7-.37-1.32-.54l-.8-.22c-1.15-.31-1.98-.7-2.48-1.18-.5-.48-.75-1.11-.75-1.89 0-.93.36-1.67 1.08-2.22.72-.55 1.67-.83 2.85-.83 1.15 0 2.08.29 2.8.86.72.57 1.1 1.35 1.14 2.34h-1.9c-.07-.44-.27-.77-.61-1-.34-.23-.8-.34-1.38-.34-.55 0-.98.11-1.29.32-.31.21-.46.5-.46.87 0 .3.13.54.39.72.26.18.72.37 1.38.56l.77.22c1.11.31 1.92.7 2.43 1.17.51.47.77 1.12.77 1.95 0 .98-.38 1.76-1.15 2.34-.77.58-1.8.87-3.09.87-1.28 0-2.31-.31-3.09-.92-.78-.61-1.2-1.48-1.25-2.61z"/>
+                </svg>
               </div>
-              <span class="tech-index">04</span>
+              <span class="tech-index text-highlight">04</span>
             </div>
             <h3 class="tech-name">TypeScript</h3>
             <p class="tech-desc">Type-safe, scalable codebases</p>
-            <div class="tech-bar"><div class="tech-bar-fill" data-level="90"></div></div>
+            <div class="tech-bar">
+              <div class="tech-bar-fill" data-level="90"></div>
+            </div>
           </div>
 
-          <div class="tech-card" style="--tech-color:#61DAFB;--tech-glow:97,218,251">
+          <div
+            class="tech-card"
+            style="--tech-color: #61dafb; --tech-glow: 97, 218, 251"
+          >
             <div class="tech-card-glow"></div>
             <div class="tech-card-top">
-              <div class="tech-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-                  <circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none"></circle>
+              <div class="tech-icon"<svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="2.1"
+                    fill="currentColor"
+                    stroke="none"
+                  ></circle>
                   <ellipse cx="12" cy="12" rx="9" ry="3.6"></ellipse>
-                  <ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"></ellipse>
-                  <ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"></ellipse>
-                </svg>
-              </div>
-              <span class="tech-index">05</span>
+                  <ellipse
+                    cx="12"
+                    cy="12"
+                    rx="9"
+                    ry="3.6"
+                    transform="rotate(60 12 12)"
+                   ></ellipse>
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <circle cx="12" cy="12" r="2" fill="#61DAFB"/>
+                        <g stroke="#61DAFB" stroke-width="1.2">
+                        <ellipse cx="12" cy="12" rx="10" ry="4"/>
+                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/>
+                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/>
+                    </g>
+                 </svg></div>
+              <span class="tech-index text-highlight">05</span>
             </div>
             <h3 class="tech-name">React</h3>
             <p class="tech-desc">Component-driven interfaces</p>
-            <div class="tech-bar"><div class="tech-bar-fill" data-level="93"></div></div>
+            <div class="tech-bar">
+              <div class="tech-bar-fill" data-level="93"></div>
+            </div>
           </div>
 
-          <div class="tech-card" style="--tech-color:#764ABC;--tech-glow:118,74,188">
+          <div
+            class="tech-card"
+            style="--tech-color: #764abc; --tech-glow: 118, 74, 188"
+          >
             <div class="tech-card-glow"></div>
             <div class="tech-card-top">
               <div class="tech-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c3-6 6-3 8-1s5 5 8-1"></path><circle cx="19" cy="7" r="1.6" fill="currentColor" stroke="none"></circle><circle cx="5" cy="17" r="1.6" fill="currentColor" stroke="none"></circle><circle cx="17.5" cy="18" r="1.6" fill="currentColor" stroke="none"></circle></svg>
-              </div>
-              <span class="tech-index">06</span>
+                <svg width="64" height="64" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill="#764ABC" d="M17.7 15.1c-.4 0-.8.1-1.1.2-1.2-2.3-3-4.2-5.2-5.5-.1-.1-.2-.1-.3-.1-.5 0-.9.4-.9.9 0 .3.2.6.5.8 1.9 1.1 3.5 2.7 4.5 4.7-.7.4-1.2 1-1.2 1.8 0 1.1.9 2 2 2s2-.9 2-2c0-.4-.1-.8-.3-1.1.3-.1.6-.1.9-.1 1.1 0 2 .6 2 1.5 0 1.3-1.5 2.3-3.5 2.3-2.6 0-4.9-1.4-6.4-3.5-1.1-1.5-1.8-3.4-1.8-5.4 0-.5-.4-.9-.9-.9s-.9.4-.9.9c0 2.4.8 4.7 2.1 6.5 1.8 2.5 4.5 4.1 7.8 4.1 3 0 5.3-1.6 5.3-4 0-1.9-1.7-3.1-3.6-3.1z"/>
+                      <circle cx="7" cy="8" r="2" fill="#764ABC"/>
+                      <circle cx="5" cy="16" r="2" fill="#764ABC"/>
+                      <circle cx="12" cy="4.5" r="2" fill="#764ABC"/>
+                </svg>
+            </div>
+              <span class="tech-index text-highlight">06</span>
             </div>
             <h3 class="tech-name">Redux</h3>
             <p class="tech-desc">Predictable global state</p>
-            <div class="tech-bar"><div class="tech-bar-fill" data-level="88"></div></div>
+            <div class="tech-bar">
+              <div class="tech-bar-fill" data-level="88"></div>
+            </div>
           </div>
 
-          <div class="tech-card" style="--tech-color:#88CE02;--tech-glow:136,206,2">
+          <div
+            class="tech-card"
+            style="--tech-color: #88ce02; --tech-glow: 136, 206, 2"
+          >
             <div class="tech-card-glow"></div>
             <div class="tech-card-top">
               <div class="tech-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-5 3 3 8-9"></path><path d="M15 7h5v5"></path></svg>
+                <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="32" cy="32" r="30" fill="#88CE02"/>
+                      <path fill="#111" d="M18 41.5c3.2 3.2 7.7 5 12.7 5 8.5 0 15.3-5.7 15.3-13.6 0-7.4-5.5-11.7-13.4-11.7-3.2 0-6 .7-8.3 2.1l1.7 4.1c1.8-1 3.9-1.5 6.1-1.5 4.8 0 8.1 2.6 8.1 7 0 4.8-3.9 8.5-9.3 8.5-2.8 0-5.2-.9-7-2.7L18 41.5z"/>
+                      <path fill="#111" d="M32 35.2h8.1v-4.1H32v4.1z"/>
+                </svg>
               </div>
-              <span class="tech-index">07</span>
+              <span class="tech-index text-highlight">07</span>
             </div>
             <h3 class="tech-name">GSAP</h3>
             <p class="tech-desc">Buttery-smooth web animation</p>
-            <div class="tech-bar"><div class="tech-bar-fill" data-level="97"></div></div>
+            <div class="tech-bar">
+              <div class="tech-bar-fill" data-level="97"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -601,43 +775,42 @@
             <div class="social-links">
               <a href="https://github.com/ASIF-MEHRAJ" class="social-link"
                 ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.41 7.86 10.94.58.11.79-.25.79-.56v-2.02c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a10.9 10.9 0 0 1 5.8 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.77 1.08.77 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"
-                />
-              </svg></a
-              >
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.41 7.86 10.94.58.11.79-.25.79-.56v-2.02c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a10.9 10.9 0 0 1 5.8 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.77 1.08.77 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"
+                  /></svg
+              ></a>
               <a
                 href="https://www.linkedin.com/in/asif-mehraj-005932406/"
                 class="social-link"
                 ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4V24h-4V8zm7 0h3.84v2.18h.05c.53-1.01 1.84-2.18 3.79-2.18C19.23 8 21 10.08 21 13.77V24h-4v-8.09c0-1.93-.03-4.41-2.69-4.41-2.69 0-3.1 2.1-3.1 4.27V24h-4V8z"
-                />
-              </svg></a
-              >
-              <a href="https://x.com/asifmehraj3214" class="social-link"> <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M18.901 1.153h3.68L14.54 10.34 24 22.846h-7.406l-5.8-7.584-6.64 7.584H.472l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153Zm-1.295 19.482h2.04L6.486 3.258H4.298L17.606 20.635Z"
-                />
-              </svg></a>
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4V24h-4V8zm7 0h3.84v2.18h.05c.53-1.01 1.84-2.18 3.79-2.18C19.23 8 21 10.08 21 13.77V24h-4v-8.09c0-1.93-.03-4.41-2.69-4.41-2.69 0-3.1 2.1-3.1 4.27V24h-4V8z"
+                  /></svg
+              ></a>
+              <a href="https://x.com/asifmehraj3214" class="social-link">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M18.901 1.153h3.68L14.54 10.34 24 22.846h-7.406l-5.8-7.584-6.64 7.584H.472l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153Zm-1.295 19.482h2.04L6.486 3.258H4.298L17.606 20.635Z"
+                  /></svg
+              ></a>
             </div>
           </div>
           <form class="contact-form" id="contactForm">
@@ -694,28 +867,41 @@
     </section>
 
     <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <a href="#" class="footer-logo">Asif Mehraj</a>
+      <div class="footer-wave footer-wave-one"></div>
+      <div class="footer-wave footer-wave-two"></div>
+
+      <div class="footer-inner">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a href="#hero" class="footer-logo">Asif Mehraj</a>
             <p class="footer-text">Creating premium digital experiences.</p>
           </div>
-          <div class="footer-right">
-            <p class="footer-copy">&copy; 2026 All rights reserved.</p>
-            <a href="#hero" class="back-to-top" aria-label="Back to top">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                width="24"
-                height="24"
-              >
-                <line x1="12" y1="19" x2="12" y2="5"></line>
-                <polyline points="5 12 12 5 19 12"></polyline>
-              </svg>
+
+          <div class="footer-navigation">
+            <span class="footer-label">NAVIGATION</span>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <div class="footer-cta">
+            <span class="footer-label">LET'S CREATE</span>
+            <h3>Let's create something great.</h3>
+            <a href="#contact" class="footer-cta-button">
+              <span>START A PROJECT</span>
+              <span class="footer-arrow">→</span>
             </a>
           </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copy">&copy; 2026 Asif Mehraj. All rights reserved.</p>
+          <a href="#hero" class="back-to-top" aria-label="Back to top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </a>
         </div>
       </div>
     </footer>

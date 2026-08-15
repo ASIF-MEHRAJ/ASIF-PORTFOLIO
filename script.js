@@ -143,7 +143,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===== HERO ANIMATIONS =====
-const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+const heroTl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
 
 heroTl
     .from('.hero-tag', { opacity: 0, y: 30, duration: 0.8 }, 0)
@@ -331,11 +331,217 @@ if (contactForm) {
     });
 }
 
+// ===== PRELOADER =====
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) {
+        heroTl.play();
+        initTextRollAnimations();
+        return;
+    }
+
+    const counterEl = document.getElementById('preloaderCounter');
+    const barFill = document.getElementById('preloaderProgressFill');
+    const statusSub = document.getElementById('preloaderStatusSub');
+    const topHalf = preloader.querySelector('.preloader-half-top');
+    const bottomHalf = preloader.querySelector('.preloader-half-bottom');
+    const lineInners = preloader.querySelectorAll('.pl-line-inner');
+    const topbarItems = preloader.querySelectorAll('.pl-topbar-item');
+    const topbarTick = preloader.querySelector('.pl-topbar-tick');
+    const loadingTag = preloader.querySelector('.preloader-loading-tag');
+    const frame = preloader.querySelector('.preloader-frame');
+    const corners4 = preloader.querySelectorAll('.pl-corner');
+    const marks = preloader.querySelectorAll('.pl-mark');
+    const tagline = preloader.querySelector('.preloader-tagline');
+    const statusRow = preloader.querySelector('.preloader-status-row');
+    const progressRow = preloader.querySelector('.preloader-progress-row');
+    const cornerLabels = preloader.querySelectorAll('.preloader-corner');
+    const nameBlock = preloader.querySelector('.preloader-name');
+
+    const STATUS_STEPS = [
+        { at: 0, label: 'Initializing systems' },
+        { at: 22, label: 'Loading assets' },
+        { at: 48, label: 'Calibrating motion' },
+        { at: 78, label: 'Rendering interface' },
+        { at: 96, label: 'Finalizing' }
+    ];
+    let statusIndex = 0;
+
+    gsap.set(lineInners, { yPercent: 115 });
+    gsap.set(corners4, { opacity: 0, scale: 0.6 });
+    gsap.set(marks, { opacity: 0 });
+
+    // ----- Intro: topbar, viewfinder frame, name reveal -----
+    // Kept brisk so the full HUD (bar, tagline, status) is settled in
+    // well before the counter/load cycle triggers the reveal below.
+    const introTl = gsap.timeline();
+    introTl
+        .from(topbarItems, { opacity: 0, y: -12, duration: 0.45, stagger: 0.08, ease: 'power3.out' })
+        .to(topbarTick, { scaleX: 1, duration: 0.5, ease: 'power3.out' }, '-=0.2')
+        .from(loadingTag, { opacity: 0, y: 12, duration: 0.35, ease: 'power3.out' }, '-=0.15')
+        .to(frame, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.1')
+        .to(corners4, {
+            opacity: 0.4,
+            scale: 1,
+            duration: 0.4,
+            stagger: 0.05,
+            ease: 'back.out(2)'
+        }, '-=0.2')
+        .to(lineInners, {
+            yPercent: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power4.out'
+        }, '-=0.2')
+        .to(marks, { opacity: 0.55, duration: 0.4, stagger: 0.04, ease: 'power2.out' }, '-=0.45')
+        .to(tagline, { opacity: 1, duration: 0.35, ease: 'power2.out' }, '-=0.3')
+        .to(statusRow, { opacity: 1, duration: 0.35, ease: 'power2.out' }, '-=0.2')
+        .to(progressRow, { opacity: 1, duration: 0.35, ease: 'power2.out' }, '-=0.2')
+        .to(statusSub, { opacity: 1, duration: 0.35, ease: 'power2.out' }, '-=0.2')
+        .to(cornerLabels, { opacity: 1, duration: 0.35, stagger: 0.08, ease: 'power2.out' }, '-=0.25');
+    // introTl now settles at roughly ~1.9s, leaving a clear window before
+    // the counter (2.4s to 90%) and the load-gated finish tween complete.
+
+    // ----- Counter: simulated progress gated by real page load -----
+    const progress = { val: 0 };
+    let pageLoaded = document.readyState === 'complete';
+    window.addEventListener('load', () => { pageLoaded = true; });
+
+    function paintCounter() {
+        const v = Math.min(100, Math.round(progress.val));
+        counterEl.textContent = v;
+        barFill.style.width = v + '%';
+
+        while (
+            statusIndex < STATUS_STEPS.length - 1 &&
+            v >= STATUS_STEPS[statusIndex + 1].at
+        ) {
+            statusIndex++;
+            statusSub.textContent = STATUS_STEPS[statusIndex].label;
+        }
+    }
+
+    gsap.to(progress, {
+        val: 90,
+        duration: 2.4,
+        ease: 'power1.inOut',
+        onUpdate: paintCounter,
+        onComplete: waitForLoad
+    });
+
+    function waitForLoad() {
+        if (pageLoaded) {
+            finishCounter();
+        } else {
+            const check = setInterval(() => {
+                if (pageLoaded) {
+                    clearInterval(check);
+                    finishCounter();
+                }
+            }, 100);
+            // Safety net so the loader never hangs indefinitely
+            setTimeout(() => {
+                clearInterval(check);
+                finishCounter();
+            }, 2500);
+        }
+    }
+
+    let finished = false;
+    function finishCounter() {
+        if (finished) return;
+        finished = true;
+        gsap.to(progress, {
+            val: 100,
+            duration: 0.5,
+            ease: 'power2.out',
+            onUpdate: paintCounter,
+            onComplete: () => {
+                statusSub.textContent = 'Ready';
+                gsap.delayedCall(0.5, revealSite);
+            }
+        });
+    }
+
+    // ----- Reveal: curtain split + exit choreography into the hero -----
+    function revealSite() {
+        const flash = preloader.querySelector('.preloader-flash');
+        gsap.set(document.body, { opacity: 1 });
+        gsap.set('.hero-visual', { opacity: 0 });
+
+        const revealTl = gsap.timeline({
+            defaults: { ease: 'power4.inOut' },
+            onComplete: () => {
+                preloader.remove();
+                document.documentElement.classList.remove('is-loading');
+                document.body.classList.remove('is-loading');
+                document.body.style.opacity = '1';
+                ScrollTrigger.refresh();
+            }
+        });
+
+        revealTl
+            // HUD elements settle out first, unhurried
+            .to(nameBlock, { opacity: 0, y: -34, filter: 'blur(8px)', duration: 0.65, ease: 'power2.in' }, 0)
+            .to(corners4, { opacity: 0, scale: 0.65, duration: 0.5, ease: 'power2.in' }, 0.05)
+            .to(marks, { opacity: 0, duration: 0.45, ease: 'power2.in' }, 0.05)
+            .to([topbarItems, loadingTag, tagline, statusRow, progressRow, statusSub, cornerLabels], {
+                opacity: 0,
+                y: -10,
+                duration: 0.55,
+                ease: 'power2.in',
+                stagger: 0.04
+            }, 0.1)
+
+            // A quick, bright flash sweeps across the seam right as the curtains
+            // begin to part — the "cool" cue that sells the split
+            .set(flash, { opacity: 1 }, 0.55)
+            .fromTo(flash, { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: 'power2.out' }, 0.55)
+            .to(flash, { opacity: 0, duration: 0.6, ease: 'power2.in' }, 0.85)
+
+            // Curtains part slowly, with a gentle zoom + blur breath for weight
+            .to([topHalf, bottomHalf], {
+                scale: 1.04,
+                filter: 'blur(1.5px)',
+                duration: 0.5,
+                ease: 'power2.in'
+            }, 0.45)
+            .to(topHalf, {
+                yPercent: -101,
+                duration: 1.7,
+                ease: 'expo.inOut'
+            }, 0.6)
+            .to(bottomHalf, {
+                yPercent: 101,
+                duration: 1.7,
+                ease: 'expo.inOut'
+            }, 0.6)
+            .to([topHalf, bottomHalf], {
+                filter: 'blur(0px)',
+                duration: 0.6,
+                ease: 'power2.out'
+            }, 0.9)
+
+            // Hero eases in slightly ahead of the curtains finishing, so the
+            // reveal feels continuous rather than a hard cut
+            .add(() => {
+                initTextRollAnimations();
+            }, 1.55)
+            .fromTo('.hero-visual', { opacity: 0, scale: 0.94, filter: 'blur(6px)' }, {
+                opacity: 1,
+                scale: 1,
+                filter: 'blur(0px)',
+                duration: 0.9,
+                ease: 'power3.out'
+            }, 1.6)
+            .add(() => {
+                heroTl.play();
+            }, 1.65);
+    }
+}
+
 // ===== PARALLAX & PAGE LOAD INIT =====
-window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-    initTextRollAnimations();
-});
+document.addEventListener('DOMContentLoaded', initPreloader);
 
 if ('ontouchstart' in window && cursor && cursorFollower) {
     cursor.style.display = 'none';
@@ -443,3 +649,108 @@ ScrollTrigger.create({
         scrollProgress.style.transform = `scaleX(${self.progress})`;
     }
 });
+
+// ===== FOOTER ANIMATION =====
+const footer = document.querySelector('.footer');
+
+if (footer) {
+    gsap.from('.footer-brand, .footer-navigation, .footer-cta', {
+        scrollTrigger: {
+            trigger: footer,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 45,
+        duration: 1,
+        stagger: 0.14,
+        ease: 'power3.out'
+    });
+
+    gsap.from('.footer-bottom', {
+        scrollTrigger: {
+            trigger: footer,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        delay: 0.35,
+        ease: 'power3.out'
+    });
+
+    const footerLogo = document.querySelector('.footer-logo');
+
+    if (footerLogo) {
+        footerLogo.addEventListener('mouseenter', () => {
+            gsap.to(footerLogo, {
+                y: -4,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+
+        footerLogo.addEventListener('mouseleave', () => {
+            gsap.to(footerLogo, {
+                y: 0,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    }
+
+    const footerCTA = document.querySelector('.footer-cta-button');
+
+    if (footerCTA) {
+        footerCTA.addEventListener('mouseenter', () => {
+            gsap.to(footerCTA.querySelector('.footer-arrow'), {
+                x: 6,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+
+        footerCTA.addEventListener('mouseleave', () => {
+            gsap.to(footerCTA.querySelector('.footer-arrow'), {
+                x: 0,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    }
+
+    const backToTop = document.querySelector('.back-to-top');
+
+    if (backToTop) {
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            gsap.to(window, {
+                duration: 1.4,
+                scrollTo: {
+                    y: 0
+                },
+                ease: 'power4.inOut'
+            });
+        });
+
+        backToTop.addEventListener('mouseenter', () => {
+            gsap.to(backToTop, {
+                y: -5,
+                scale: 1.05,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+
+        backToTop.addEventListener('mouseleave', () => {
+            gsap.to(backToTop, {
+                y: 0,
+                scale: 1,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    }
+}
