@@ -452,6 +452,66 @@ body.is-loading {
 .preloader-corner-bl { left: 2.5rem; }
 .preloader-corner-br { right: 2.5rem; }
 
+/* ----- Sound toggle ----- */
+.pl-topbar-item-right {
+    gap: 0.9rem;
+}
+
+.preloader-sound-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(242, 242, 242, 0.04);
+    border: 1px solid rgba(242, 242, 242, 0.22);
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.25em;
+    font-size: 0.6rem;
+    color: rgba(242, 242, 242, 0.65);
+    transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.preloader-sound-toggle:hover {
+    border-color: rgba(229, 28, 28, 0.6);
+    color: #f2f2f2;
+}
+
+.pl-sound-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 10px;
+}
+
+.pl-sound-bar {
+    width: 2px;
+    background: var(--hybrid-color);
+    box-shadow: 0 0 5px 0.5px rgba(229, 28, 28, 0.7);
+    animation: plSoundBar 0.9s ease-in-out infinite;
+}
+
+.pl-sound-bar:nth-child(1) { height: 40%; animation-delay: -0.6s; }
+.pl-sound-bar:nth-child(2) { height: 100%; animation-delay: -0.3s; }
+.pl-sound-bar:nth-child(3) { height: 65%; animation-delay: -0.9s; }
+
+@keyframes plSoundBar {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1); }
+}
+
+.preloader-sound-toggle[aria-pressed="false"] {
+    color: rgba(242, 242, 242, 0.35);
+    border-color: rgba(242, 242, 242, 0.12);
+}
+
+.preloader-sound-toggle[aria-pressed="false"] .pl-sound-bar {
+    animation-play-state: paused;
+    transform: scaleY(0.15);
+    background: rgba(242, 242, 242, 0.3);
+    box-shadow: none;
+}
+
 @media (max-width: 640px) {
     .preloader-topbar {
         padding: 1.5rem 1.3rem 0.8rem;
@@ -474,6 +534,8 @@ body.is-loading {
     }
     .preloader-corner-bl { left: 1.3rem; }
     .preloader-corner-br { right: 1.3rem; }
+    .pl-sound-label { display: none; }
+    .preloader-sound-toggle { padding: 0.35rem; }
 }
 
 /* ===== NAVBAR ===== */
@@ -1210,7 +1272,7 @@ section {
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--hybrid-color);
     margin-bottom: 10px;
 }
 
@@ -1218,7 +1280,7 @@ section {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 26px;
     font-weight: 700;
-    color: var(--text);
+    color: var(--hybrid-color);
     margin-bottom: 10px;
 }
 
