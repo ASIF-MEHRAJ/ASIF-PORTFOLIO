@@ -90,7 +90,7 @@ if (window.matchMedia('(pointer: fine)').matches) {
     }
     animateFollower();
 
-    const hoverElements = document.querySelectorAll('a, button, .btn, .nav-toggle, .project-card-large, .case-card, .service-card, .social-link, .tech-item, .back-to-top, .carousel-card, .tech-pill');
+    const hoverElements = document.querySelectorAll('a, button, .btn, .nav-toggle, .project-card-large, .social-link, .back-to-top, .carousel-card, .tech-pill');
     hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => cursorFollower.classList.add('hover'));
         el.addEventListener('mouseleave', () => cursorFollower.classList.remove('hover'));
@@ -99,7 +99,6 @@ if (window.matchMedia('(pointer: fine)').matches) {
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
-let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
@@ -108,7 +107,6 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('scrolled');
     }
-    lastScroll = currentScroll;
 });
 
 // Mobile nav toggle
