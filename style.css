@@ -1706,6 +1706,9 @@ a.contact-value:hover {
     perspective: 1000px;
     cursor: pointer;
 }
+.text-highlight{
+    color:#8f0000;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1200px) {
